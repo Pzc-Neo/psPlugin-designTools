@@ -1,0 +1,506 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+  <meta http-equiv="content-type" content="text/html" charset="UTF-8">
+
+  <!--导入样式表-->
+  <link href="./css/styles.css" type="text/css" rel="stylesheet">
+  <link href="./css/color_panel.css" type="text/css" rel="stylesheet">
+
+  <!--导入用到的js文件-->
+  <script type="text/javascript" src="./js/Currency.js"></script>
+  <script type="text/javascript" src="./js/DesignTools.js"></script>
+  <script type="text/javascript" src="./js/Color_Panel.js"></script>
+  <!--导入用于与ps通讯的js文件-->
+  <script type="text/javascript" src="./js/CSInterface.js"></script>
+  <!--导入用于与ai通讯的js文件-->
+  <script type="text/javascript" src="./js/Vulcan.js"></script>
+  <!--据说是用于调用在线复制之类的api-->
+  <script type="text/javascript" src="./js/AgoraLib.js"></script>
+</head>
+
+<body>
+  <!-- 切换 -->
+  <div>
+    <span class="switch_btn_selecte" id="create_btn" onclick="switch_btn_class(this.id)">创建</span>
+    <span class="switch_btn" id="guides_btn" onclick="switch_btn_class(this.id)">参考</span>
+    <span class="switch_btn" id="color_btn" onclick="switch_btn_class(this.id)">配色</span>
+    <span class="switch_btn" id="other_btn" onclick="switch_btn_class(this.id)">其他</span>
+    <span class="switch_btn" id="postprocess_btn" onclick="switch_btn_class(this.id)">后期</span>
+    <br />
+    <span>----------------------------------------------</span>
+  </div>
+  <!-- 常用面板 -->
+  <div id="guides_panel">
+
+    <div class="referenceLine all" style="text-align: left;">
+      <p class="pClass">---|----|---- 创建参考线 ----|----|---</p>
+
+      <button type="button" class="default_btn default_btn_size" onclick="free_guide_line_js('HT')">
+        <image src="./img/ref_img/HT.png"></image>
+      </button>
+      <button type="button" class="default_btn default_btn_size" onclick="free_guide_line_js('HM')">
+        <image src="./img/ref_img/HM.png"></image>
+      </button>
+      <button type="button" class="default_btn default_btn_size" onclick="free_guide_line_js('HB')">
+        <image src="./img/ref_img/HB.png"></image>
+      </button>
+      <button type="button" class="default_btn default_btn_size" onclick="free_guide_line_js('VL')">
+        <image src="./img/ref_img/VL.png"></image>
+      </button>
+      <button type="button" class="default_btn default_btn_size" onclick="free_guide_line_js('VM')">
+        <image src="./img/ref_img/VM.png"></image>
+      </button>
+      <button type="button" class="default_btn default_btn_size" onclick="free_guide_line_js('VR')">
+        <image src="./img/ref_img/VR.png"></image>
+      </button>
+
+      <button type="button" class="default_btn default_btn_size" onclick="free_guide_line_js('VMHM')">
+        <image src="./img/ref_img/VMHM.png"></image>
+      </button>
+      <button type="button" class="default_btn default_btn_size" onclick="free_guide_line_js('SIDE')">
+        <image src="./img/ref_img/SIDE.png"></image>
+      </button>
+      <button type="button" class="default_btn default_btn_size" onclick="free_guide_line_js('VLHT')">
+        <image src="./img/ref_img/VLHT.png"></image>
+      </button>
+      <button type="button" class="default_btn default_btn_size" onclick="free_guide_line_js('VLHB')">
+        <image src="./img/ref_img/VLHB.png"></image>
+      </button>
+      <button type="button" class="default_btn default_btn_size" onclick="free_guide_line_js('VRHT')">
+        <image src="./img/ref_img/VRHT.png"></image>
+      </button>
+      <button type="button" class="default_btn default_btn_size" onclick="free_guide_line_js('VRHB')">
+        <image src="./img/ref_img/VRHB.png"></image>
+      </button>
+
+
+      <form>
+        <select class="selectClass" id="guides_list" onchange="change_guides()">
+          <!--下拉列表框，设置id，方便调用-->
+          <option value="all">未刷新</option>
+        </select>
+        <button type="button" class="default_btn normal_btn_size" onclick="get_exit_guides_js()">刷新列表</button>
+        <button type="button" class="default_btn normal_btn_size"
+          onclick="clear_and_use_current_guides_js()">清空并应用</button>
+        <button type="button" class="default_btn normal_btn_size" onclick="use_current_guides_js()">应用</button>
+
+        <button type="button" class="default_btn normal_btn_size" onclick="clear_all_guides_js()">清空</button>
+        <button type="button" class="default_btn normal_btn_size" onclick="save_guides_js()">保存</button>
+        <!-- <button type="button" class="default_btn normal_btn_size"
+          onclick="delete_layers_by_name_js('参考线组-guides_groups-DesignTools')">删除所有</button> -->
+      </form>
+
+    </div>
+
+    <!--自由阵列-->
+    <div class="iteam_array all">
+
+      <p class="pClass">-----|----|---- 自由阵列 ----|----|----</p>
+
+      <!--上层按钮-->
+      <button type="button" class="default_btn big_btn_size" onclick="free_array_js('TL')">
+        <!-- <button type="button" class="default_btn big_btn_size" onclick="arrayTL_js()"> -->
+        <div style="transform:rotate(225deg);">→</div>
+      </button>
+      <button type="button" class="default_btn big_btn_size" onclick="free_array_js('TM')">
+        <div style="transform:rotate(-90deg);">→</div>
+      </button>
+      <button type="button" class="default_btn big_btn_size" onclick="free_array_js('TR')">
+        <div style="transform:rotate(-45deg);">→</div>
+      </button>
+
+      <!--中层按钮-->
+      <button type="button" class="default_btn big_btn_size" onclick="free_array_js('ML')">
+        <div style="transform:rotate(180deg);">→</div>
+      </button>
+      <!-- <div style="transform:rotate(-90deg);">→</div> -->
+
+      <div type="button" class="big_btn_size" style="display: inline-block;">
+        <input id="quantity" style="width:45%;height:90%;" placeholder="数量" value="1" title="数量"
+          onclick="selectAllText_js(this.id)">
+        <input id="moveDistance" style="width:45%;height:90%;" placeholder="像素" value="5" title="间隔"
+          onclick="selectAllText_js(this.id)">
+      </div>
+      <button type="button" class="default_btn big_btn_size" onclick="free_array_js('MR')">
+        <div style="transform:rotate(0deg);">→</div>
+      </button>
+
+
+      <!--下层按钮-->
+      <button type="button" class="default_btn big_btn_size" onclick="free_array_js('BL')">
+        <div style="transform:rotate(135deg);">→</div>
+      </button>
+      <button type="button" class="default_btn big_btn_size" onclick="free_array_js('BM')">
+        <div style="transform:rotate(90deg);">→</div>
+      </button>
+      <button type="button" class="default_btn big_btn_size" onclick="free_array_js('BR')">
+        <div style="transform:rotate(45deg);">→</div>
+      </button>
+
+    </div>
+
+    <!--阵列-->
+    <div class="iteam_array all">
+
+      <table style="border: 0px;">
+        <tr>
+          <p class="pClass">------|-----|----- 阵列 -----|-----|-----</p>
+        </tr>
+        <tr>
+          <td> <input type="button" class="btn" value="横个数"></td>
+          <td><input type="text" id="rowNum" class="textBox" value="2" onclick="selectAllText_js(this.id)"></td>
+          <td> <input type="button" class="btn" value="横间隔"></td>
+          <td><input type="text" id="rowInterval" class="textBox" value="5" onclick="selectAllText_js(this.id)"></td>
+
+        </tr>
+
+        <tr>
+          <td><input type="button" class="btn" value="竖个数"></td>
+          <td><input type="text" id="colNum" class="textBox" value="2" onclick="selectAllText_js(this.id)"></td>
+          <td><input type="button" class="btn" value="竖间隔"></td>
+          <td><input type="text" id="colInterval" class="textBox" value="5" onclick="selectAllText_js(this.id)"></td>
+
+        </tr>
+        <tr>
+          <td><input type="button" class="default_btn arrayBtn" value="阵 列" onclick="iteam_array_js()"></td>
+          <td><input type="button" class="default_btn arrayBtn" value="撤 销" onclick="undo_iteam_array_js()"></td>
+          <td><input type="button" class="default_btn arrayBtn" value="重 置" onclick="resetValue_js()"></td>
+          <td><input type="button" class="default_btn arrayBtn" value="说 明" onclick="readme_js()"></td>
+        </tr>
+
+      </table>
+
+    </div>
+
+  </div>
+
+  <!-- 配色面板 -->
+  <div id="color_panel" hidden>
+
+    <button onclick="load_default_color_schemes_js(this)" class="default_btn normal_btn_size">载入默认</button>
+    <button onclick="update_default_color_schemes_js(this)" class="default_btn normal_btn_size">存为默认</button>
+    <button onclick="open_color_schemes_psd_js(this)" class="default_btn normal_btn_size">配色文件</button>
+
+    <select class="color_schemes_list" id="color_schemes_list" onchange="change_color_schemes()">
+      <!--下拉列表框，设置id，方便调用-->
+      <option value="all">未刷新</option>
+    </select>
+
+    <button type="button" class="default_btn normal_btn_size" onclick="get_color_schemes_list_js()">刷新列表</button>
+    <button type="button" class="default_btn normal_btn_size" onclick="load_user_color_schemes_list_js()">配色表</button>
+    <button onclick="update_all_layer_js()" class="default_btn normal_btn_size">更新</button>
+    <button type="button" class="default_btn normal_btn_size" onclick="use_current_color_schemes_js()">重载</button>
+    <button onclick="save_color_schemes_js(this)" class="default_btn normal_btn_size">保存</button>
+    <button onclick="get_color_schemes_js(this)" class="default_btn normal_btn_size">图层读入</button>
+
+
+    <!-- <p class="pClass">-----|----|---- 颜色列表 ----|----|----</p> -->
+    <br />
+    <span>----------------------------------------------</span>
+
+    <span id="current_color_schemes_name">当前方案：默认配色方案</span>
+    <div class="color_row"><span class="color_name">C01</span><span class="show_color"
+        onclick="get_foregroundColor_js(this)" title="点击获取前景色"></span><input class="color_remark"
+        placeholder="备注"><button onclick="get_color_js(this)" class="default_btn">取色</button><button
+        onclick="set_color_js(this)" class="default_btn">设置</button><button onclick="unset_color_js(this)"
+        class="default_btn">取消</button></div>
+    <div class="color_row"><span class="color_name">C02</span><span class="show_color"
+        onclick="get_foregroundColor_js(this)" title="点击获取前景色"></span><input class="color_remark"
+        placeholder="备注"><button onclick="get_color_js(this)" class="default_btn">取色</button><button
+        onclick="set_color_js(this)" class="default_btn">设置</button><button onclick="unset_color_js(this)"
+        class="default_btn">取消</button></div>
+    <div class="color_row"><span class="color_name">C03</span><span class="show_color"
+        onclick="get_foregroundColor_js(this)" title="点击获取前景色"></span><input class="color_remark"
+        placeholder="备注"><button onclick="get_color_js(this)" class="default_btn">取色</button><button
+        onclick="set_color_js(this)" class="default_btn">设置</button><button onclick="unset_color_js(this)"
+        class="default_btn">取消</button></div>
+    <div class="color_row"><span class="color_name">C04</span><span class="show_color"
+        onclick="get_foregroundColor_js(this)" title="点击获取前景色"></span><input class="color_remark"
+        placeholder="备注"><button onclick="get_color_js(this)" class="default_btn">取色</button><button
+        onclick="set_color_js(this)" class="default_btn">设置</button><button onclick="unset_color_js(this)"
+        class="default_btn">取消</button></div>
+    <div class="color_row"><span class="color_name">C05</span><span class="show_color"
+        onclick="get_foregroundColor_js(this)" title="点击获取前景色"></span><input class="color_remark"
+        placeholder="备注"><button onclick="get_color_js(this)" class="default_btn">取色</button><button
+        onclick="set_color_js(this)" class="default_btn">设置</button><button onclick="unset_color_js(this)"
+        class="default_btn">取消</button></div>
+    <div class="color_row"><span class="color_name">C06</span><span class="show_color"
+        onclick="get_foregroundColor_js(this)" title="点击获取前景色"></span><input class="color_remark"
+        placeholder="备注"><button onclick="get_color_js(this)" class="default_btn">取色</button><button
+        onclick="set_color_js(this)" class="default_btn">设置</button><button onclick="unset_color_js(this)"
+        class="default_btn">取消</button></div>
+    <div class="color_row"><span class="color_name">C07</span><span class="show_color"
+        onclick="get_foregroundColor_js(this)" title="点击获取前景色"></span><input class="color_remark"
+        placeholder="备注"><button onclick="get_color_js(this)" class="default_btn">取色</button><button
+        onclick="set_color_js(this)" class="default_btn">设置</button><button onclick="unset_color_js(this)"
+        class="default_btn">取消</button></div>
+    <div class="color_row"><span class="color_name">C08</span><span class="show_color"
+        onclick="get_foregroundColor_js(this)" title="点击获取前景色"></span><input class="color_remark"
+        placeholder="备注"><button onclick="get_color_js(this)" class="default_btn">取色</button><button
+        onclick="set_color_js(this)" class="default_btn">设置</button><button onclick="unset_color_js(this)"
+        class="default_btn">取消</button></div>
+    <div class="color_row"><span class="color_name">C09</span><span class="show_color"
+        onclick="get_foregroundColor_js(this)" title="点击获取前景色"></span><input class="color_remark"
+        placeholder="备注"><button onclick="get_color_js(this)" class="default_btn">取色</button><button
+        onclick="set_color_js(this)" class="default_btn">设置</button><button onclick="unset_color_js(this)"
+        class="default_btn">取消</button></div>
+    <div class="color_row"><span class="color_name">C10</span><span class="show_color"
+        onclick="get_foregroundColor_js(this)" title="点击获取前景色"></span><input class="color_remark"
+        placeholder="备注"><button onclick="get_color_js(this)" class="default_btn">取色</button><button
+        onclick="set_color_js(this)" class="default_btn">设置</button><button onclick="unset_color_js(this)"
+        class="default_btn">取消</button></div>
+    <div class="color_row"><span class="color_name">C11</span><span class="show_color"
+        onclick="get_foregroundColor_js(this)" title="点击获取前景色"></span><input class="color_remark"
+        placeholder="备注"><button onclick="get_color_js(this)" class="default_btn">取色</button><button
+        onclick="set_color_js(this)" class="default_btn">设置</button><button onclick="unset_color_js(this)"
+        class="default_btn">取消</button></div>
+    <div class="color_row"><span class="color_name">C12</span><span class="show_color"
+        onclick="get_foregroundColor_js(this)" title="点击获取前景色"></span><input class="color_remark"
+        placeholder="备注"><button onclick="get_color_js(this)" class="default_btn">取色</button><button
+        onclick="set_color_js(this)" class="default_btn">设置</button><button onclick="unset_color_js(this)"
+        class="default_btn">取消</button></div>
+    <div class="color_row"><span class="color_name">C13</span><span class="show_color"
+        onclick="get_foregroundColor_js(this)" title="点击获取前景色"></span><input class="color_remark"
+        placeholder="备注"><button onclick="get_color_js(this)" class="default_btn">取色</button><button
+        onclick="set_color_js(this)" class="default_btn">设置</button><button onclick="unset_color_js(this)"
+        class="default_btn">取消</button></div>
+    <div class="color_row"><span class="color_name">C14</span><span class="show_color"
+        onclick="get_foregroundColor_js(this)" title="点击获取前景色"></span><input class="color_remark"
+        placeholder="备注"><button onclick="get_color_js(this)" class="default_btn">取色</button><button
+        onclick="set_color_js(this)" class="default_btn">设置</button><button onclick="unset_color_js(this)"
+        class="default_btn">取消</button></div>
+    <div class="color_row"><span class="color_name">C15</span><span class="show_color"
+        onclick="get_foregroundColor_js(this)" title="点击获取前景色"></span><input class="color_remark"
+        placeholder="备注"><button onclick="get_color_js(this)" class="default_btn">取色</button><button
+        onclick="set_color_js(this)" class="default_btn">设置</button><button onclick="unset_color_js(this)"
+        class="default_btn">取消</button></div>
+
+
+  </div>
+
+  <!-- 创建面板 -->
+  <div id="create_panel" hidden>
+    <div id="create_file" class="create all">
+      <!-- <p class="pClass">-----|----|---- 新建文件 ----|----|---- -->
+      <p class="pClass">---|----|
+        <input type="button" class="default_btn" value="重置" onclick="reset_create_info()">
+        新建文件
+        <input type="button" class="default_btn" value="修改" onclick="change_create_info()">
+        |----|---
+      </p>
+      <div id="modify_create_info" style="display: none; position: fixed;z-index: 100;width: 90%;">
+        <p style="background-color: #222;padding: 5px;margin: 0px;font-size:13px">
+          格式：宽度，高度，分辨率，单位。
+          <br />
+          说明：单位可以不填，默认为PIXELS(像素),
+          <br />
+          单位可选的值：CM(厘米)、INCHES(英寸)、MM(毫米)、PICAS(派卡)、PIXELS(像素)。
+          <br />
+          填括号里面的或者外面的都行，比如说可以填"CM"，也可以填"厘米"</p>
+        <textarea style="width: 100%;height: 300px; background-color: aliceblue;color: #222;"></textarea>
+        <input type="button" class="default_btn"
+          style="background-color: rgb(194, 194, 194);color:rgb(73, 73, 73); width: 48%;height:100px;font-size: 30px;font-weight:bold;"
+          value="确认" onclick="confirm_change_create_info()">
+        <input type="button" class="default_btn"
+          style="background-color: rgb(194, 194, 194);color:rgb(73, 73, 73); width: 48%;height:100px;font-size:30px;font-weight:bold;"
+          value="取消" onclick="cancel_change_create_info()">
+      </div>
+      <button type="button" class="default_btn normal_btn_size" onclick="new_file_from_clipboard_js()">从剪切板新建</button>
+    </div>
+    <span>----------------------------------------------</span>
+    <div style="margin-bottom: 5px;font-size: 13px;">
+      <input type="radio" name="text_align" value="Left" style="zoom: 1.2">
+      <label>左对齐</label>
+      <input type="radio" name="text_align" value="Cntr" checked style="zoom: 1.2;">
+      <label>居中</label>
+      <input type="radio" name="text_align" value="Rght" style="zoom: 1.2;">
+      <label>右对齐</label>
+    </div>
+    <div>
+
+      <button type="button" class="default_btn normal_btn_size"
+        onclick="create_text_layer_js('SourceHanSansCN-Heavy','title')">主标题</button>
+      <button type="button" class="default_btn normal_btn_size"
+        onclick="create_text_layer_js('SourceHanSansCN-Regular','subtitle')">副标题</button>
+      <button type="button" class="default_btn normal_btn_size"
+        onclick="create_text_layer_js('SourceHanSansCN-Normal','paragraph')">段落</button>
+      <button type="button" class="default_btn normal_btn_size" onclick="split_text_js()">打散</button>
+
+    </div>
+
+    <!-- 比例 -->
+    <div>
+      <span>----------------------------------------------</span>
+      <p id="reference_info" style="margin:5px;font-size:13px">参考对象：无</p>
+      <button type="button" class="default_btn normal_btn_size" onclick="set_reference_layer_js('doc')">当前文档</button>
+      <button type="button" class="default_btn normal_btn_size"
+        onclick="set_reference_layer_js('active_lay')">当前图层</button>
+      <button type="button" class="default_btn normal_btn_size"
+        onclick="set_reference_layer_js('current_selection')">当前选区</button>
+
+      <div style="margin-bottom: 5px;margin-top: 5px; font-size: 13px;">
+        <input type="radio" name="w_or_h" value="width" checked style="zoom: 1.2">
+        <label>宽</label>
+        <input type="radio" name="w_or_h" value="height" style="zoom: 1.2;">
+        <label>高</label>
+        <input id="is_proportionally" type="checkbox" value="proportionally" checked style="zoom: 1.2;">
+        <label>等比</label>
+        <input id="is_reverse" type="checkbox" value="reverse" style="zoom: 1.2;">
+        <label>反向</label>
+      </div>
+
+      <button type="button" class="default_btn normal_btn_size"
+        onclick="resize_layer_js('golden_section')">黄金比例</button>
+      <button type="button" class="default_btn normal_btn_size" onclick="resize_layer_js('same')">匹配大小</button>
+      <button type="button" class="default_btn normal_btn_size" onclick="align_item_js('symmetry')">对称</button>
+    </div>
+
+    <span>----------------------------------------------</span>
+    <div>
+      <button type="button" class="default_btn normal_btn_size" onclick="align_item_js('left')">靠左</button>
+      <button type="button" class="default_btn normal_btn_size" onclick="align_item_js('center')">居中</button>
+      <button type="button" class="default_btn normal_btn_size" onclick="align_item_js('right')">靠右</button>
+    </div>
+    <!-- 字体 -->
+    <div>
+      <!-- <p>---------字体---------</p> -->
+      <div id="change_font" class="create all">
+        <p class="pClass">---|----|
+          <input type="button" class="default_btn" value="重置" onclick="reset_font_info()">
+          修改字体
+          <input type="button" class="default_btn" value="修改" onclick="change_font_info()">
+          |----|---
+        </p>
+        <div id="modify_font_info" style="display: none; position: fixed;top: 45px; z-index: 100;width: 90%;">
+          <p style="background-color: #222;padding: 5px;margin: 0px;font-size:13px">
+            格式：字体名称，显示名称。
+            <br />
+            说明：点击“获取当前字体名称”按钮，可以得到当前图层的字体名称。
+          </p>
+          <textarea style="width: 100%;height: 300px; background-color: aliceblue;color: #222;"></textarea>
+          <input type="button" class="default_btn"
+            style="background-color: rgb(194, 194, 194);color:rgb(73, 73, 73); width: 48%;height:100px;font-size: 30px;font-weight:bold;"
+            value="确认" onclick="confirm_change_font_info()">
+          <input type="button" class="default_btn"
+            style="background-color: rgb(194, 194, 194);color:rgb(73, 73, 73); width: 48%;height:100px;font-size:30px;font-weight:bold;"
+            value="取消" onclick="cancel_change_font_info()">
+        </div>
+      </div>
+
+      <button type="button" class="default_btn normal_btn_size" onclick="get_font_name_js()">
+        <span>获取当前字体名称</span>
+      </button>
+
+      <div id="change_font_size" class="create all">
+        <!-- <p class="pClass">-----|----|---- 新建文件 ----|----|---- -->
+        <p class="pClass">---|----|
+          <input type="button" class="default_btn" value="重置" onclick="reset_font_size_info()">
+          文字大小
+          <input type="button" class="default_btn" value="修改" onclick="change_font_size_info()">
+          |----|---
+        </p>
+        <div id="modify_font_size_info" style="display: none; position: fixed;top: 45px; z-index: 100;width: 90%;">
+          <textarea style="width: 100%;height: 300px; background-color: aliceblue;color: #222;"></textarea>
+          <input type="button" class="default_btn"
+            style="background-color: rgb(194, 194, 194);color:rgb(73, 73, 73); width: 48%;height:100px;font-size: 30px;font-weight:bold;"
+            value="确认" onclick="confirm_change_font_size_info()">
+          <input type="button" class="default_btn"
+            style="background-color: rgb(194, 194, 194);color:rgb(73, 73, 73); width: 48%;height:100px;font-size:30px;font-weight:bold;"
+            value="取消" onclick="cancel_change_font_size_info()">
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- 其他面板 -->
+  <div id="other_panel" hidden>
+    <!-- <h1>其他面板</h1> -->
+
+    <div>
+      <p class="pClass">---|----|
+        <input type="button" class="default_btn" value="重置" onclick="reset_export_info_js()">
+        导出图片
+        <input type="button" class="default_btn" value="修改" onclick="change_export_info_js()">
+        |----|---
+      </p>
+      <div id="modify_export_info" style="display: none; position: fixed;z-index: 100;width: 90%;">
+        <p style="background-color: #222;padding: 5px;margin: 0px;font-size:13px">
+          格式：宽度,质量,单位,格式。
+          <br />
+          说明：宽度为0，代表原尺寸。
+          <br />
+          质量可选的值：0-100。
+          <br />
+          单位可选的值：CM(厘米)、INCHES(英寸)、MM(毫米)、PICAS(派卡)、PIXELS(像素)。
+          <br />
+          格式可选的值：JPEG、PNG8、PNG24。
+        </p>
+        <textarea style="width: 100%;height: 300px; background-color: aliceblue;color: #222;"></textarea>
+        <input type="button" class="default_btn"
+          style="background-color: rgb(194, 194, 194);color:rgb(73, 73, 73); width: 48%;height:100px;font-size: 30px;font-weight:bold;"
+          value="确认" onclick="confirm_change_export_info()">
+        <input type="button" class="default_btn"
+          style="background-color: rgb(194, 194, 194);color:rgb(73, 73, 73); width: 48%;height:100px;font-size:30px;font-weight:bold;"
+          value="取消" onclick="cancel_change_export_info()">
+      </div>
+
+      <!-- 导出图片的按钮(插件运行时生成) -->
+      <div id="export_img">
+      </div>
+      <span>----------------------------------------------</span>
+      <button type="button" class="default_btn normal_btn_size" onclick="export_all_img_size_js()">导出所有尺寸</button>
+      <button type="button" class="default_btn normal_btn_size" onclick="export_source_img_size_js()">导出原尺寸</button>
+      <button type="button" class="default_btn normal_btn_size" onclick="open_export_folder_js()">打开文件夹</button>
+      <!-- 替换文本 -->
+      <br />
+      <br />
+      <div>
+        <span>---------文本替换---------</span>
+        <table border="0" style="width: 220px;">
+          <tr>
+            <td><span class="smallTitle">原文本:</span><br> </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="text" id="oldText" value="">
+              <span class="smallTitle">替换成:</span><br>
+              <input type="text" id="newText" value="" onkeyup="excute_replace_text_js(this.event)">
+              <input type="button" class="default_btn normal_btn_size" value=" 替 换 " onclick="replace_text_js()">
+              <input type="button" class="default_btn normal_btn_size" value=" 清 空 " onclick="clear_text()">
+              <input type="button" class="default_btn normal_btn_size" value=" 说 明 " onclick="readme()">
+            </td>
+            <td><input class="default_btn exchangbutton" type="button" value="↕" onclick="exchang_text()"></td>
+          </tr>
+        </table>
+      </div>
+
+      <p>---------其他---------</p>
+      <button type="button" class="default_btn normal_btn_size" onclick="backup_current_file_js()">备份文件</button>
+      <button type="button" class="default_btn normal_btn_size" onclick="open_backup_folder_js()">打开备份文件夹</button>
+      <br />
+      <button type="button" class="default_btn normal_btn_size" onclick="open_user_data_folder_js()">
+        <span>打开用户配置文件夹</span>
+      </button>
+      <!-- <button type="button" class="default_btn normal_btn_size" onclick="insert_file_js ()">插入文件</button> -->
+      <button type="button" class="default_btn normal_btn_size" onclick="do_action_js()">动作</button>
+
+    </div>
+  </div>
+
+  <!-- 其他面板 -->
+  <div id="postprocess_panel" hidden>
+    <button type="button" class="default_btn normal_btn_size" onclick="new_neutral_gray_layer_js()">中性灰图层</button>
+    <button type="button" class="default_btn normal_btn_size" onclick="new_neutral_gray_layer_js()">单曲线</button>
+    <br/>
+    <p>参考</p>
+    <img src="./img/color.jpg">
+  </div>
+
+  <p style="text-align: center;color: #bababa;font-size: 9pt;" ;><a>by 技术玩家Neo</a> </p>
+</body>
+
+</html>

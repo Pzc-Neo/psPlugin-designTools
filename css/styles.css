@@ -1,0 +1,248 @@
+body {
+    color: rgb(218, 218, 218);
+    background-color: #535353;
+    text-align: left;
+    font-size: 15px;
+}
+
+.switch_btn {
+    color: #eee;
+    background-color: #414141;
+
+    display: inline-block;
+    padding: 8px 10px;
+    margin: 0px;
+    cursor: default;
+    font-size: 17px;
+}
+.switch_btn_selecte{
+    color: #eee;
+    /* color: rgb(39, 39, 39); */
+    background-color: #313131;
+
+    display: inline-block;
+    padding: 8px 10px;
+    margin: 0px;
+    cursor: default;
+    font-size: 17px;
+}
+
+.new {
+    width: 110px;
+    height: 35px;
+    position: relative;
+    margin: 2px;
+    padding: 10px;
+    display: inline-block;
+    line-height: 30px;
+    user-select: none;
+}
+
+/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+::-webkit-scrollbar {
+    width: 10px;
+    height: 7px;
+    background-color: #555555;
+}
+
+/*定义滚动条轨道 内阴影+圆角*/
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 0px rgba(0, 0, 0, 0.0);
+    -webkit-box-shadow: inset 0 0 0px rgba(0, 0, 0, 0.0);
+    border-radius: 0px;
+    background-color: #454545;
+}
+
+/*定义滑块 内阴影+圆角*/
+::-webkit-scrollbar-thumb {
+    border-radius: 0px;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, .0);
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .0);
+    background-color: #747474;
+}
+
+.imType {
+    color: rgb(218, 218, 218);
+    background-color: aqua;
+    text-decoration: line-through;
+
+}
+
+.textBox {
+    width: 43px;
+    height: 30px;
+}
+
+.btn {
+    width: 50px;
+    height: 30px;
+    background-color: #454545;
+    border: none;
+    color: #eee;
+    padding: 2px 5px;
+
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 2px 1px;
+    cursor: pointer;
+    outline-style: none;
+}
+
+
+
+.selectClass {
+    width: 152px;
+    height: 30px;
+}
+
+.color_schemes_list{
+    width: 80px;
+    height: 30px;
+}
+
+.switchClass {
+    width: 72px;
+    height: 20px;
+}
+
+
+
+.pClass {
+    text-align: center;
+    color: rgb(218, 218, 218);
+    font-size: 17;
+
+}
+
+.array {
+    display: none;
+
+}
+
+.default_btn_size {
+    width: 35px;
+    height: 35px;
+    /* padding: 1px; */
+}
+
+.big_btn_size {
+    width: 74px;
+    height: 36px;
+    margin-top: 5px;
+}
+
+.default_btn {
+
+    background-color: #454545;
+    border: none;
+    color: #eee;
+    padding: 0px 0px;
+
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    outline-style: none;
+    user-select: none;
+}
+
+.default_btn:hover {
+
+    background-color: #4d4d4d;
+}
+
+.default_btn:active {
+    background-color: #414141;
+}
+
+.arrayBtn {
+    width: 50px;
+    height: 30px;
+    background-color: #454545;
+    border: none;
+    color: #eee;
+    padding: 0px 0px;
+
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    /* font-size: 13px; */
+    margin: 0px 0px;
+    cursor: pointer;
+
+}
+
+
+
+/***********************************
+ * 配色面板
+ ***********************************/
+
+.show_color {
+    display: inline-block;
+    position: relative;
+    top: 5px;
+    width: 20px;
+    height: 20px;
+    margin: 0px 4px;
+    background-color: aquamarine;
+}
+
+div.color_row>button {
+    color: #eee;
+    background-color: #414141;
+    padding: 5px 6px;
+    /* margin: 2px; */
+    border: 0px;
+    outline-style: none;
+}
+
+ .color_scheme_btn {
+    color: #eee;
+    background-color: #414141;
+    padding: 5px 6px;
+    margin-top: 3px;
+    border: 0px;
+    outline-style: none;
+}
+
+.color_remark{
+    width: 60px;
+
+}
+
+/***********************************
+ * 其他面板
+ ***********************************/
+.normal_btn_size{
+    padding: 7px 8px;
+    margin:1px;
+}
+
+.export_btn_size{
+    padding: 10px;
+    margin:1px;
+}
+
+
+.smallTitle{
+    color: aliceblue;
+    font-size: 13px;
+    
+}
+td{
+
+    text-align:left;
+    align-content: center;
+    vertical-align: top;
+
+}
+
+.exchangbutton{
+    width: 25px;
+    height: 58px;
+    text-align: center;
+    
+}
